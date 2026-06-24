@@ -2,7 +2,7 @@
 
 ##Changes
 
-Besides fixing the cmelcase algorithm for initla caps, I have removed all escapes every for everything. Remember to add them back one at a time if problems show up.
+Besides fixing the camelcase algorithm for initial caps, I have removed all escapes everywhere for everything. Remember to add them back one at a time if problems show up.
 
 
 
