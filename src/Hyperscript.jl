@@ -180,7 +180,7 @@ printescaped(io::IO, x::AbstractChar, escapes) = printescaped(io, string(x), esc
 printescaped(io::IO, x, escapes) = printescaped(io, sprint(print, x), escapes)
 
 # pass numbers (and 1-character attributes) through untrammelled
-kebab(camel::String) = length(camel) > 1 ? join(islowercase(c) || isnumeric(c) || c == '-' ? c : '-' * lowercase(c) for c in camel) : camel
+kebab(camel::String) = camel[1] * join(islowercase(c) || isnumeric(c) || c == '-' ? c : '-' * lowercase(c) for c in camel[2:end])
 
 
 ## HTMLSVG
