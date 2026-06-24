@@ -311,14 +311,18 @@ end
 # Creates an HTML or SVG escaping dictionary
 chardict(chars) = Dict(c => "&#$(Int(c));" for c in chars)
 
-# See: https://stackoverflow.com/questions/7753448/how-do-i-escape-quotes-in-html-attribute-values
-const ATTR_VALUE_ESCAPES = chardict("&<>\"\n\r\t")
-
-# See: https://stackoverflow.com/a/9189067/1175713
-const HTML_ESCAPES = chardict("&<>\"'`!@\$%()=+{}[]")
-
 # Used for CSS nodes, as well as children of tag nodes defined with @tags_noescape
 const NO_ESCAPES = Dict{Char, String}()
+
+# See: https://stackoverflow.com/questions/7753448/how-do-i-escape-quotes-in-html-attribute-values
+const ATTR_VALUE_ESCAPES = NO_ESCAPES
+#chardict("&<>\"\n\r\t")
+
+# See: https://stackoverflow.com/a/9189067/1175713
+const HTML_ESCAPES = NO_ESCAPES
+# chardict("&<>\"'`!@\$%()=+{}[]")
+
+
 
 escapetag(ctx::HTMLSVG) = HTML_ESCAPES
 escapeattrname(ctx::HTMLSVG) = HTML_ESCAPES
