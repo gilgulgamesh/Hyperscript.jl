@@ -238,7 +238,7 @@ renderdomchild(io, rctx::RenderContext, ctx, x::Nothing) = nothing
 
 # Render and escape other HTMLSVG children, including CSS nodes, in the parent context.
 # If a child is `showable` with text/html, render with that using `repr`.
-renderdomchild(io, rctx::RenderContext, ctx, x) =
+renderdomchild(io, rctx::RenderContext, ctx, x) = 
     showable(MIME("text/html"), x) ? show(io, MIME("text/html"), x) : printescaped(io, x, escapechild(ctx))
 
 # All camelCase attribute names from HTML 4, HTML 5, SVG 1.1, SVG Tiny 1.2, and SVG 2
@@ -315,13 +315,12 @@ chardict(chars) = Dict(c => "&#$(Int(c));" for c in chars)
 const NO_ESCAPES = Dict{Char, String}()
 
 # See: https://stackoverflow.com/questions/7753448/how-do-i-escape-quotes-in-html-attribute-values
-const ATTR_VALUE_ESCAPES = chardict("&<>\"\n\r\t")
-#
+const ATTR_VALUE_ESCAPES = NO_ESCAPES
+#chardict("&<>\"\n\r\t")
 
 # See: https://stackoverflow.com/a/9189067/1175713
-const HTML_ESCAPES =  chardict("&<>\"'`!@\$%()=+{}[]")
-# NO_ESCAPES
-
+const HTML_ESCAPES = NO_ESCAPES
+# chardict("&<>\"'`!@\$%()=+{}[]")
 
 
 
